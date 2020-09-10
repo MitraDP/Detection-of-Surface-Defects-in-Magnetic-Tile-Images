@@ -2,9 +2,12 @@
     Ref: https://www.kaggle.com/c/tgs-salt-identification-challenge/discussion/65938
     https://discuss.pytorch.org/t/focal-loss-for-imbalanced-multi-class-classification-in-pytorch/61289
  """
+
+import torch.nn as nn
+
 class FocalLoss(nn.Module):
     def __init__(self, alpha=1, gamma=2, reduce=True):
-        super(FocalLoss, self).__init__()
+        super().__init__()
         self.alpha = alpha
         self.gamma = gamma
         self.reduce = reduce

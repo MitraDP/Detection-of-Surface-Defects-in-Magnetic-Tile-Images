@@ -1,43 +1,50 @@
 from torch.utils.data import Dataset, DataLoader
+import torchvision.transforms as transforms
 import torchvision.transforms.functional as TF
 import torch.nn as nn
 import random
+import numpy as np
 
 
-class Resize(TF):
+class Resize(object):
     """Resize the image to a given size. """
-    def __init__(self):
-        super(Resize, self).__init__()
-        self.output_size = (224,224)
-
-    def __call__(self, img, output_size ):
+    def __init__(self, output_size):
+        """
+        Args:
+            output_size (tuple): Desired output size.
+        """
+        super().__init__()
+        assert isinstance(output_size, tuple)
+        self.output_size = output_size
+        
+    def __call__(self, img):
         """
         Args:
             img (PIL Image): Image to be resized.
-            output_size (tuple): Desired output size.
         """
-        assert isinstance(output_size, tuple)
-        return TF.resize(img, output_size)
+
+        return TF.resize(img, self.output_size)
 
 
-class Rotate(TF):
+class Rotate(object):
     """Rotate the image by the given angle."""
-    def __init__(self):
-        super(Rotate, self).__init__()
+    def __init__(self, angle):
+        super().__init__()
+        self.angle = angle
 
-    def __call__(self, img, angle):
+    def __call__(self, img):
         """
         Args:
             img (PIL Image): Image to be converted to grayscale.
             angle: Desired rotation angle in degrees
         """
-        return TF.rotate(img, angle)
+        return TF.rotate(img, self.angle)
 
 
-class VerticalFlip(TF):
+class VerticalFlip(object):
     """Vertically flip the image."""
     def __init__(self):
-        super(VerticalFlip, self).__init__()
+        super().__init__()
 
     def __call__(self, img):
         """
@@ -46,10 +53,10 @@ class VerticalFlip(TF):
         """
         return TF.vflip(img)
 
-class HorizontalFlip(TF):
+class HorizontalFlip(object):
     """Horizontally flip the image."""
     def __init__(self):
-        super(HorizontalFlip, self).__init__()
+        super().__init__()
 
     def __call__(self, img):
         """
@@ -58,33 +65,31 @@ class HorizontalFlip(TF):
         """
         return TF.hflip(img)
 
-class Normalize(TF):
+class Normalize(object):
     """Convert the color range of a grayscale image to [0,1] and normalize it using mean and standard deviation."""        
     def __init__(self):
-        super(Normalize, self).__init__()
+        super().__init__()
 
     def __call__(self, img):
         """
         Args:
-            img (PIL Image): Image to be normalized.
+            img (tensor image): Image to be normalized.
         """
         # scale colour range from [0, 255] to [0, 1]
-        img = img.astype(np.float32)/255
+        img = img/255
 
-        # compute the mean and standard deviation of the image
-        return TF.normalize(img, np.mean(img), np.std(img))
-        
+        return TF.normalize(img, 0, 1)      
 
-class ToTensor(TF):
-    """Convert ndarrays in to Tensors."""
+class ToTensor(object):
+    """Convert PIL Image in to Tensors."""
     def __init__(self):
-        super(ToTensor, self).__init__()
+        super().__init__()
 
     def __call__(self,img):
         """
         Args:
             img (PIL Image): Image to be converted to tensor.
         """
-        return TF.ToTensor(img)  
+        return TF.to_tensor(img)  
 
 

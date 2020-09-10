@@ -11,7 +11,7 @@ import torch.nn as nn
 class UNet(nn.Module):
 
     def __init__(self, in_channels=1, out_channels=1, init_features=16, dropout_p= 0.2):
-        super(UNet, self).__init__()
+        super().__init__()
 
         features = init_features
 
@@ -25,17 +25,17 @@ class UNet(nn.Module):
         self.pool4 = nn.MaxPool2d(kernel_size=2, stride=2)
 
         # Bottleneck layer
-        self.bottleneck = UNet._block(features * 8, features * 16, name="bottleneck")
+        self.bottleneck = UNet._block(features * 8, features * 16)
 
         # Decoding layers
         self.upconv4 = nn.ConvTranspose2d(features * 16, features * 8, kernel_size=2, stride=2)
-        self.decoder4 = UNet._block((features * 8) * 2, features * 8, name="dec4")
+        self.decoder4 = UNet._block((features * 8) * 2, features * 8)
         self.upconv3 = nn.ConvTranspose2d(features * 8, features * 4, kernel_size=2, stride=2        )
-        self.decoder3 = UNet._block((features * 4) * 2, features * 4, name="dec3")
+        self.decoder3 = UNet._block((features * 4) * 2, features * 4)
         self.upconv2 = nn.ConvTranspose2d(features * 4, features * 2, kernel_size=2, stride=2)
-        self.decoder2 = UNet._block((features * 2) * 2, features * 2, name="dec2")
+        self.decoder2 = UNet._block((features * 2) * 2, features * 2)
         self.upconv1 = nn.ConvTranspose2d(features * 2, features, kernel_size=2, stride=2)
-        self.decoder1 = UNet._block(features * 2, features, name="dec1")
+        self.decoder1 = UNet._block(features * 2, features)
 
         # output layer
         self.conv = nn.Conv2d(in_channels=features, out_channels=out_channels, kernel_size=1)
@@ -50,24 +50,15 @@ class UNet(nn.Module):
 
     def forward(self, x):
 
-    c4 = conv2d_block(p3, n_filters * 8, kernel_size = 3, batchnorm = batchnorm)
-    p4 = MaxPooling2D((2, 2))(c4)
-    p4 = Dropout(dropout)(p4)    
-    c5 = conv2d_block(p4, n_filters = n_filters * 16, kernel_size = 3, batchnorm = batchnorm)
-    u6 = Conv2DTranspose(n_filters * 8, (3, 3), strides = (2, 2), padding = 'same')(c5)
-    u6 = concatenate([u6, c4])
-    u6 = Dropout(dropout)(u6)
-    c6 = conv2d_block(u6, n_filters * 8, kernel_size = 3, batchnorm = batchnorm)
-        
         # Encoding path
         enc1 = self.encoder1(x)
-        p1 = self.dropout(self.pool(enc1)
+        p1 = self.dropout(self.pool(enc1))
         enc2 = self.encoder2(p1)
-        p2 = self.dropout(self.pool(enc2)
+        p2 = self.dropout(self.pool(enc2))
         enc3 = self.encoder3(p2)
-        p3 = self.dropout(self.pool(enc3)
+        p3 = self.dropout(self.pool(enc3))
         enc4 = self.encoder4(p3)
-        p4 = self.dropout(self.pool(enc4)
+        p4 = self.dropout(self.pool(enc4))
 
         # Bottleneck
         bottleneck = self.bottleneck(p4)
@@ -106,6 +97,6 @@ class UNet(nn.Module):
                         kernel_size=3,
                         padding=1,
                         bias=False)),
-                    (name + "norm2", nn.BatchNorm2d(num_features=out_features)),
-                    (name + "relu2", nn.ReLU(inplace=True))
+                    ("norm2", nn.BatchNorm2d(num_features=out_features)),
+                    ("relu2", nn.ReLU(inplace=True))
                 ]))
