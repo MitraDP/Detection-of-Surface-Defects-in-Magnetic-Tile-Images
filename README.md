@@ -1,5 +1,8 @@
 # Magnetic Tile Surface Defect Detection
 
+maximum F_beta score 0.9366812	
+MAE (mean absolute error) 8.071598e-04
+
 References:
 
 Huang, Y., Qiu, C. & Yuan, K. Surface defect saliency of magnetic tile. Vis Comput 36, 85–96 (2020). https://doi.org/10.1007/s00371-018-1588-5
