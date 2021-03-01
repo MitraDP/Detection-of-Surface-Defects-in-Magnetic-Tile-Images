@@ -1,4 +1,4 @@
-# Surface_Defect_Detection
+# Magnetic Tile Surface Defect Detection
 
 References:
 
