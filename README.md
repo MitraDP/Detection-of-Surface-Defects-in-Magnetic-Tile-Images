@@ -1,5 +1,18 @@
 # Magnetic Tile Surface Defect Detection
 
+
+"assets/Blowhole.png"
+"assets/Crack.png"
+
+
+
+"assets/Crack_prediction_sample1.png"
+"assets/Crack_prediction_sample2.png"
+"assets/Crack_prediction_sample3.png"
+"assets/Blowhole_prediction_sample1.png"
+"assets/Blowhole_prediction_sample2.png"
+"assets/Blowhole_prediction_sample3.png"
+
 maximum F_beta score 0.9366812	
 MAE (mean absolute error) 8.071598e-04
 
