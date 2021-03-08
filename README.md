@@ -1,17 +1,36 @@
 # Magnetic Tile Surface Defect Detection
 
+<p align="center">
+<image src="assets/Blowhole.png" width="600"> 
+ </p>
+  
+<p align="center">
+<image src= "assets/Crack.png" width="600"> 
+ </p>
 
-"assets/Blowhole.png"
-"assets/Crack.png"
-
-
-
-"assets/Crack_prediction_sample1.png"
-"assets/Crack_prediction_sample2.png"
-"assets/Crack_prediction_sample3.png"
-"assets/Blowhole_prediction_sample1.png"
-"assets/Blowhole_prediction_sample2.png"
-"assets/Blowhole_prediction_sample3.png"
+<p align="center">
+<image src="assets/Crack_prediction_sample1.png" width="600"> 
+ </p>
+  
+<p align="center">
+<image src="assets/Crack_prediction_sample2.png" width="600"> 
+ </p>
+  
+<p align="center">
+<image src="assets/Crack_prediction_sample3.png" width="600"> 
+ </p>
+  
+<p align="center">
+<image src="assets/Blowhole_prediction_sample1.png" width="600"> 
+ </p>
+  
+<p align="center">
+<image src="assets/Blowhole_prediction_sample2.png" width="600"> 
+ </p>
+  
+<p align="center">
+<image src="assets/Blowhole_prediction_sample3.png" width="600"> 
+ </p>
 
 maximum F_beta score 0.9366812	
 MAE (mean absolute error) 8.071598e-04
