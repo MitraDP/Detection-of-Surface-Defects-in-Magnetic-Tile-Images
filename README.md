@@ -13,7 +13,7 @@ Examples of magnetic tile surface defects, labelled with the pixel-level ground 
 </p>
 
 ## Objective
-One of the most laborious parts of quality control of magnetic tile manufacturing is surface defect detection. Blowhole and crack have a crucial impact on the quality of the tiles. The goal of this study is binary semantic segmentation of the Blowhole_Crack_Free dataset. 
+One of the most laborious parts of quality control of magnetic tile manufacturing is surface defect detection. Since blowhole and crack have a crucial impact on the quality of the tiles. The goal of this study is binary semantic segmentation of the Blowhole_Crack_Free dataset. 
 
 ## Evaluation Metrics
 
@@ -21,7 +21,8 @@ The evaluation metrics are the maximum F_beta measure (beta^2=0.3) and the mean 
 
 ## Solution Approach
 
-In semantic segmentation, every pixel in the image is assigned to a class. To train a network that detects defects at the pixel level (binary semantic segmentation), I define two main classes: defective and flawless. I have labelled the defective pixels as True (1) and the rest as False (0). 
+In semantic segmentation, every pixel in the image is assigned to a class. To train a network that detects defects at the pixel level (binary semantic segmentation), I define two main classes: defective and flawless. I label the defective pixels as True (1) and the rest as False (0). 
+
 Table 1 shows the number of images in each class. Since the dataset is highly imbalanced, I perform undersampling on the “Free” dataset and sample randomly 80 images. Using the stratified random sampling technique, I divide the datasets into train, validation and test sets using a 70/10/20 split. The images and their corresponding masks, which are in various sizes, are all resized to 224×224 pixels. Each pair of images and mask of the train dataset are randomly flipped horizontally or vertically or rotated at an angle of (0, -90, 90, 180) degrees.  
 
 Table 1
