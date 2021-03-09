@@ -18,7 +18,7 @@ In semantic segmentation, every pixel in the image is assigned to a class. To tr
 Table 1 shows the number of images in each class. Since the dataset is highly imbalanced, I perform undersampling on the “Free” dataset and sample randomly 80 images. Using the stratified random sampling technique, I divide the datasets into train, validation and test sets using a 70/10/20 split. The images and their corresponding masks, which are in various sizes, are all resized to 224×224 pixels. Each pair of images and mask of the train dataset are randomly flipped horizontally or vertically or rotated at an angle of (0, -90, 90, 180) degrees.  
 
 
-<table style="width:20%">
+<table>
 <tr>
 <th><Class></th>
 <th><Number of images></th>
