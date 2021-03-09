@@ -18,37 +18,13 @@ In semantic segmentation, every pixel in the image is assigned to a class. To tr
 Table 1 shows the number of images in each class. Since the dataset is highly imbalanced, I perform undersampling on the “Free” dataset and sample randomly 80 images. Using the stratified random sampling technique, I divide the datasets into train, validation and test sets using a 70/10/20 split. The images and their corresponding masks, which are in various sizes, are all resized to 224×224 pixels. Each pair of images and mask of the train dataset are randomly flipped horizontally or vertically or rotated at an angle of (0, -90, 90, 180) degrees.  
 
 
-<table style="width:200%">
-<tr>
-<th><Class></th>
-<th><Number of images></th>
-</tr>
-
-<tr>
-<td><blowhole></td>
-<td><115></td>
-</tr>
-
-<tr>
-<td><crack></td>
-<td><57></td>
-</tr>
-
-<tr>
-<td><break></td>
-<td><85></td>
-</tr>
-
-<tr>
-<td><fray></td>
-<td><32></td>
-</tr>
-
-<tr>
-<td><uneven></td>
-<td><103></td>
-</tr>
-</table>
+|Class||Number of images|
+|----||----|
+|blowhole||115|
+|crack||57|
+|break||85|
+|fray||32|
+|uneven||103|
 
 Apart from undersampling “Free” images, more action is required to handle the data imbalance. To do so, I use either Tversky loss [3] or the Weighted BCE loss function.
 I perform the pixel classification using the UNET architecture which is developed by Olaf Ronneberger et al. for BioMedical Image Segmentation [2]. This architecture, which is a Fully Convolutional Network, contains an encoder and a decoder path. The encoder path captures the context of the image and the decoder path enables localization. The contracting path is a stack of convolutional and max-pooling layers and the symmetric expanding path uses transposed convolutions. Figure 2 summarizes the model that is used in this project which has four resolution steps. I use 32 in-features and a dropout probability of 20%.
