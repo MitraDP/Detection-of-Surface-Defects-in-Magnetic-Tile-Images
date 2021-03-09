@@ -7,9 +7,8 @@ The [magnetic tile surface defect dataset](https://github.com/abin24) is origina
 
 <p align="center">
 <image src= "assets/magnetic_tile_surface_defects.png" width="600"> 
-</p>
- 
-<p style="text-align: center;">               
+</p> 
+<p align="center">               
 Examples of magnetic tile surface defects, labelled with the pixel-level ground truths [1].
 </p>
 
