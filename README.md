@@ -1,7 +1,11 @@
 # Detection of Surface Defects in Magnetic Tile Images
 ## Dataset
 
-The [magnetic tile surface defect dataset](https://github.com/abin24) is originally used by Huang et al [1]. Based on the defect types, the dataset is divided into six smaller datasets: blowhole, crack, break, fray, uneven (grinding uneven) and free (no defects). Each image is accompanied by its pixel-level ground-truth image. 
+The [magnetic tile surface defect dataset](https://github.com/abin24) is originally used by Huang et al [1]. Based on the defect types, the dataset is divided into six smaller datasets: blowhole, crack, break, fray, uneven (grinding uneven) and free (no defects). Each image is accompanied by its pixel-level ground-truth image. /blob/master/assets/magnetic_tile_surface_defects.png
+
+<p align="center">
+<image src= "assets/magnetic_tile_surface_defects.png" width="600"> 
+ </p>
 
 Examples of magnetic tile surface defects, labelled with the pixel-level ground truths [1].
 
