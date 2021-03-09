@@ -47,6 +47,7 @@ Figure 2. UNet architecture.
 </p>
 
 I did experimentation with various optimizers (SGD, Adam), batch sizes, and loss functions (Weighted BCE, Tversky). For the training schedule, I use Leslie Smith’s One Cycle Learning Rate Policy [4] with 200 epochs. In each training, the best model is the one with the lowest validation loss.
+
 With a batch size of 32, Adam optimizer, Tversky loss, and maximum learning rate of 0.02, I get  0.937 and 8.07e-04 for the maximum F_beta measure and its mean absolute error (MAE), respectively.
 
 Samples of images, masks, and the binary prediction counterparts of the Crack and Blowhole defects are shown in Figure 3. Pixels with probabilities of 0.5 (threshold) or higher are considered defective.
