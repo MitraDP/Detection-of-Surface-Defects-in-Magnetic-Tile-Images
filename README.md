@@ -19,20 +19,13 @@ Table 1 shows the number of images in each class. Since the dataset is highly im
 
 Table 1
 
-|Class||Number of images|
-
-|----||----|
-
-|blowhole||115|
-
-|crack||57|
-
-|break||85|
-
-|fray||32|
-
-|uneven||103|
-
+|Class|Number of images|
+|----|----|
+|blowhole|115|
+|crack|57|
+|break|85|
+|fray|32|
+|uneven|103|
 
 Apart from undersampling “Free” images, more action is required to handle the data imbalance. To do so, I use either Tversky loss [3] or the Weighted BCE loss function.
 I perform the pixel classification using the UNET architecture which is developed by Olaf Ronneberger et al. for BioMedical Image Segmentation [2]. This architecture, which is a Fully Convolutional Network, contains an encoder and a decoder path. The encoder path captures the context of the image and the decoder path enables localization. The contracting path is a stack of convolutional and max-pooling layers and the symmetric expanding path uses transposed convolutions. Figure 2 summarizes the model that is used in this project which has four resolution steps. I use 32 in-features and a dropout probability of 20%.
