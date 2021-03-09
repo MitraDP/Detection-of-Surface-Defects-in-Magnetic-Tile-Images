@@ -13,7 +13,7 @@ Examples of magnetic tile surface defects, labelled with the pixel-level ground 
 </p>
 
 ## Objective
-One of the most laborious parts of quality control of magnetic tile manufacturing is surface defect detection. Blowhole and Crack have a crucial impact on the quality of the tiles. The goal of this study is binary semantic segmentation of the Blowhole_Crack_Free dataset. 
+One of the most laborious parts of quality control of magnetic tile manufacturing is surface defect detection. Blowhole and crack have a crucial impact on the quality of the tiles. The goal of this study is binary semantic segmentation of the Blowhole_Crack_Free dataset. 
 
 ## Evaluation Metrics
 
