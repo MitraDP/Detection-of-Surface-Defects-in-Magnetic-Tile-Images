@@ -9,6 +9,10 @@
  </p>
 
 <p align="center">
+<image src= "assets/2D_UNet_architecture.png" width="600"> 
+ </p>
+
+<p align="center">
 <image src="assets/Crack_prediction_sample1.png" width="600"> 
  </p>
   
