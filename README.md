@@ -10,7 +10,7 @@ One of the most laborious parts of quality control of magnetic tile manufacturin
 
 ## Evaluation Metrics
 
-The evaluation metrics are the maximum F_beta measure and the mean absolute error (MAE) associated with it.
+The evaluation metrics are the maximum F_beta measure (beta^2=0.3) and the mean absolute error (MAE) associated with it.
 
 ## Solution Approach
 
@@ -27,15 +27,7 @@ I perform the pixel classification using the UNET architecture which is develope
 
 I did experimentation with various optimizers (SGD, Adam), batch sizes, and loss functions (Weighted BCE, Tversky). For the training schedule, I use Leslie Smith’s One Cycle Learning Rate Policy [4] with 200 epochs. In each training, the best model is the one with the lowest validation loss.
 With a batch size of 32, Adam optimizer, Tversky loss, and maximum learning rate of 0.02, I get  0.937 and 8.07e-04 for the maximum F_beta measure and its mean absolute error (MAE), respectively.
-Images, masks, and the binary prediction counterparts of the Crack and Blowhole defects are shown down below. Pixels with probabilities of 0.5 (threshold) or higher are considered defective.
-
-## Run 
-
-- Download the dataset from https://github.com/abin24/Magnetic-tile-defect-datasets to your Google Drive.
-- You may change the batch size, optimizer type, loss function, threshold probability limit, classes that you might want to keep, and the number of epochs in the “Set the training parameters” section. If you wish to include more classes update the list in the “partitioning” function of “dataset.py” as well.  
-- If you wish to find the maximum learning rate, set lr_find to true and run the code up to the “Train and validate the model” section. Change the scheduler “max_lr” value to the suggested rate and set the “lr” in the optimizer definition to 1/10 of the “max_lr”. Set “lr_find” to False and rerun the code.
-- The notebook will generate a CSV file for the history of train and validation loss.
-- The notebook performs classification and visualization on the “test” data.
+Samples of images, masks, and the binary prediction counterparts of the Crack and Blowhole defects are shown down below. Pixels with probabilities of 0.5 (threshold) or higher are considered defective.
  
 <p align="center">
 <image src="assets/Crack_prediction_sample1.png" width="600"> 
@@ -62,6 +54,14 @@ Images, masks, and the binary prediction counterparts of the Crack and Blowhole 
  </p>
 
 
+## Run 
+
+- Download the dataset from https://github.com/abin24/Magnetic-tile-defect-datasets to your Google Drive.
+- You may change the batch size, optimizer type, loss function, threshold probability limit, classes that you might want to keep, and the number of epochs in the “Set the training parameters” section. If you wish to include more classes update the list in the “partitioning” function of “dataset.py” as well.  
+- If you wish to find the maximum learning rate, set lr_find to true and run the code up to the “Train and validate the model” section. Change the scheduler “max_lr” value to the suggested rate and set the “lr” in the optimizer definition to 1/10 of the “max_lr”. Set “lr_find” to False and rerun the code.
+- The notebook will generate a CSV file for the history of train and validation loss.
+- The notebook performs classification and visualization on the “test” data.
+
 ## References:
 
 [1] Huang, Y., Qiu, C. & Yuan, K. Surface defect saliency of magnetic tile. Vis Comput 36, 85–96 (2020). https://doi.org/10.1007/s00371-018-1588-5
@@ -74,21 +74,21 @@ Images, masks, and the binary prediction counterparts of the Crack and Blowhole 
 
 [5] Achanta et al.,"Frequency-tuned salient region detection," 2009 IEEE Conference on Computer Vision and Pattern Recognition, Miami,FL,USA, 2009, pp.1597-1604, doi: 10.1109/CVPR.2009.5206596.
 
-https://discuss.pytorch.org/t/solved-class-weight-for-bceloss/3114/2
+[6] https://discuss.pytorch.org/t/solved-class-weight-for-bceloss/3114/2
 
-https://github.com/mateuszbuda/brain-segmentation-pytorch/blob/master/unet.py
+[7] https://github.com/mateuszbuda/brain-segmentation-pytorch/blob/master/unet.py
 
-https://github.com/hlamba28/UNET-TGS/blob/master/TGS%20UNET.ipynb
+[8] https://github.com/hlamba28/UNET-TGS/blob/master/TGS%20UNET.ipynb
 
-https://discuss.pytorch.org/t/pytorch-how-to-initialize-weights/81511/4
+[9] https://discuss.pytorch.org/t/pytorch-how-to-initialize-weights/81511/4
 
-https://discuss.pytorch.org/t/how-are-layer-weights-and-biases-initialized-by-default/13073/24
+[10] https://discuss.pytorch.org/t/how-are-layer-weights-and-biases-initialized-by-default/13073/24
 
-https://github.com/joe-siyuan-qiao/WeightStandardization
+[11] https://github.com/joe-siyuan-qiao/WeightStandardization
 
-https://github.com/davidtvs/pytorch-lr-finder
+[12] https://github.com/davidtvs/pytorch-lr-finder
 
-https://github.com/frankkramer-lab/MIScnn
+[13] https://github.com/frankkramer-lab/MIScnn
 
-https://towardsdatascience.com/finding-good-learning-rate-and-the-one-cycle-policy-7159fe1db5d6
+[14] https://towardsdatascience.com/finding-good-learning-rate-and-the-one-cycle-policy-7159fe1db5d6
 
