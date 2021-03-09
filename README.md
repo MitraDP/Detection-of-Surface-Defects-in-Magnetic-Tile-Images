@@ -1,7 +1,7 @@
 # Detection of Surface Defects in Magnetic Tile Images
 ## Dataset
 
-The magnetic tile surface defect dataset (MTDD) is originally used by Huang et al [1]. Based on the defect types, the dataset is divided into six smaller datasets: blowhole, crack, break, fray, uneven (grinding uneven) and free (no defects). Each image is accompanied by its pixel-level ground-truth image. 
+The [magnetic tile surface defect dataset (MTDD)] (https://github.com/abin24/Magnetic-tile-defect-datasets) is originally used by Huang et al [1]. Based on the defect types, the dataset is divided into six smaller datasets: blowhole, crack, break, fray, uneven (grinding uneven) and free (no defects). Each image is accompanied by its pixel-level ground-truth image. 
 
 Examples of magnetic tile surface defects, labelled with the pixel-level ground truths [1]
 
@@ -16,7 +16,7 @@ The evaluation metrics are the maximum F_beta measure and the mean absolute erro
 
 In semantic segmentation, every pixel in the image is assigned to a class. To train a network that detects defects at the pixel level (binary semantic segmentation), I define two main classes: defective and flawless. I have labelled the defective pixels as True (1) and the rest as False (0). 
 Table 1 shows the number of images in each class. Since the dataset is highly imbalanced, I perform undersampling on the “Free” dataset and sample randomly 80 images. Using the stratified random sampling technique, I divide the datasets into train, validation and test sets using a 70/10/20 split. The images and their corresponding masks, which are in various sizes, are all resized to 224×224 pixels. Each pair of images and mask of the train dataset are randomly flipped horizontally or vertically or rotated at an angle of (0, -90, 90, 180) degrees.  
-Apart from undersampling “Free” images, more action is required to handle the data imbalance. To do so, I use either Tversky loss or the Weighted BCE loss function.
+Apart from undersampling “Free” images, more action is required to handle the data imbalance. To do so, I use either Tversky loss [3] or the Weighted BCE loss function.
 I perform the pixel classification using the UNET architecture which is developed by Olaf Ronneberger et al. for BioMedical Image Segmentation [2]. This architecture, which is a Fully Convolutional Network, contains an encoder and a decoder path. The encoder path captures the context of the image and the decoder path enables localization. The contracting path is a stack of convolutional and max-pooling layers and the symmetric expanding path uses transposed convolutions. Figure 2 summarizes the model that is used in this project which has four resolution steps. I use 32 in-features and a dropout probability of 20%.
 
 
@@ -25,7 +25,7 @@ I perform the pixel classification using the UNET architecture which is develope
  </p>
 
 
-I did experimentation with various optimizers (SGD, Adam), batch sizes, and loss functions (Weighted BCE, Tversky). For the training schedule, I use Leslie Smith’s One Cycle Learning Rate Policy with 200 epochs. In each training, the best model is the one with the lowest validation loss.
+I did experimentation with various optimizers (SGD, Adam), batch sizes, and loss functions (Weighted BCE, Tversky). For the training schedule, I use Leslie Smith’s One Cycle Learning Rate Policy [4] with 200 epochs. In each training, the best model is the one with the lowest validation loss.
 With a batch size of 32, Adam optimizer, Tversky loss, and maximum learning rate of 0.02, I get  0.937 and 8.07e-04 for the maximum F_beta measure and its mean absolute error (MAE), respectively.
 Images, masks, and the binary prediction counterparts of the Crack and Blowhole defects are shown down below. Pixels with probabilities of 0.5 (threshold) or higher are considered defective.
 
@@ -92,6 +92,3 @@ https://github.com/frankkramer-lab/MIScnn
 
 https://towardsdatascience.com/finding-good-learning-rate-and-the-one-cycle-policy-7159fe1db5d6
 
-## Dataset
-
-https://github.com/abin24/Magnetic-tile-defect-datasets
