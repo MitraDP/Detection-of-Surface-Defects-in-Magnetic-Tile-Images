@@ -3,7 +3,7 @@
 
 The [magnetic tile surface defect dataset](https://github.com/abin24) is originally used by Huang et al [1]. Based on the defect types, the dataset is divided into six smaller datasets: blowhole, crack, break, fray, uneven (grinding uneven) and free (no defects). Each image is accompanied by its pixel-level ground-truth image. 
 
-Examples of magnetic tile surface defects, labelled with the pixel-level ground truths [1]
+Examples of magnetic tile surface defects, labelled with the pixel-level ground truths [1].
 
 ## Objective
 One of the most laborious parts of quality control of magnetic tile manufacturing is surface defect detection. Blowhole and Crack have a crucial impact on the quality of the tiles. The goal of this study is binary semantic segmentation of the Blowhole_Crack_Free dataset. 
@@ -16,6 +16,40 @@ The evaluation metrics are the maximum F_beta measure (beta^2=0.3) and the mean 
 
 In semantic segmentation, every pixel in the image is assigned to a class. To train a network that detects defects at the pixel level (binary semantic segmentation), I define two main classes: defective and flawless. I have labelled the defective pixels as True (1) and the rest as False (0). 
 Table 1 shows the number of images in each class. Since the dataset is highly imbalanced, I perform undersampling on the “Free” dataset and sample randomly 80 images. Using the stratified random sampling technique, I divide the datasets into train, validation and test sets using a 70/10/20 split. The images and their corresponding masks, which are in various sizes, are all resized to 224×224 pixels. Each pair of images and mask of the train dataset are randomly flipped horizontally or vertically or rotated at an angle of (0, -90, 90, 180) degrees.  
+
+
+<table style="width:20%">
+<tr>
+<th><Class></th>
+<th><Number of images></th>
+</tr>
+
+<tr>
+<td><blowhole></td>
+<td><115></td>
+</tr>
+
+<tr>
+<td><crack></td>
+<td><57></td>
+</tr>
+
+<tr>
+<td><break></td>
+<td><85></td>
+</tr>
+
+<tr>
+<td><fray></td>
+<td><32></td>
+</tr>
+
+<tr>
+<td><uneven></td>
+<td><103></td>
+</tr>
+</table>
+
 Apart from undersampling “Free” images, more action is required to handle the data imbalance. To do so, I use either Tversky loss [3] or the Weighted BCE loss function.
 I perform the pixel classification using the UNET architecture which is developed by Olaf Ronneberger et al. for BioMedical Image Segmentation [2]. This architecture, which is a Fully Convolutional Network, contains an encoder and a decoder path. The encoder path captures the context of the image and the decoder path enables localization. The contracting path is a stack of convolutional and max-pooling layers and the symmetric expanding path uses transposed convolutions. Figure 2 summarizes the model that is used in this project which has four resolution steps. I use 32 in-features and a dropout probability of 20%.
 
@@ -64,13 +98,13 @@ Samples of images, masks, and the binary prediction counterparts of the Crack an
 
 ## References:
 
-[1] Huang, Y., Qiu, C. & Yuan, K. Surface defect saliency of magnetic tile. Vis Comput 36, 85–96 (2020). https://doi.org/10.1007/s00371-018-1588-5
+[1] Huang, Y., Qiu, C. & Yuan, K. Surface defect saliency of magnetic tile. Vis Comput 36, 85–96 (2020). https://doi.org/10.1007/s00371-018-1588-5.
 
 [2] Ronneberger, O.; Fischer, P.; Brox, T. U-Net: Convolutional Networks for Biomedical Image Segmentation. In Proceedings of the International Conference on Medical image computing and computer-assisted intervention, Munich, Germany, 5–9 October 2015; pp. 234–241.
 
 [3] Salehi, Seyed Sadegh Mohseni et al. “Tversky Loss Function for Image Segmentation Using 3D Fully Convolutional Deep Networks.” ArXiv abs/1706.05721 (2017): n. pag.
 
-[4] L. N. Smith, A disciplined approach to neural network hyper-parameters: Part 1 -- learning rate, batch size, momentum, and weight decay, US Naval Research Laboratory Technical Report 5510-026, arXiv:1803.09820v2. 2018
+[4] L. N. Smith, A disciplined approach to neural network hyper-parameters: Part 1 -- learning rate, batch size, momentum, and weight decay, US Naval Research Laboratory Technical Report 5510-026, arXiv:1803.09820v2. 2018.
 
 [5] Achanta et al.,"Frequency-tuned salient region detection," 2009 IEEE Conference on Computer Vision and Pattern Recognition, Miami,FL,USA, 2009, pp.1597-1604, doi: 10.1109/CVPR.2009.5206596.
 
