@@ -104,10 +104,10 @@ def get_inference_performance_metrics(model, train_on_gpu, loaders, threshold= 0
         F_beta_score_val += F_beta_score * batch_l
         MAE_val += MAE * batch_l
         accuracy_val += accuracy * batch_l
-    # Calculate the overall average metrics
-    specificity_val, sensitivity_val, precision_val, F1_score_val, F2_score_val, DSC_val , F_beta_score_val, MAE_val , accuracy_val= specificity_val/test_cnt, sensitivity_val/test_cnt, precision_val/test_cnt, F1_score_val/test_cnt, F2_score_val/test_cnt, DSC_val/test_cnt, F_beta_score_val/test_cnt, MAE_val/test_cnt, accuracy_val/test_cnt
+        # Calculate the overall average metrics
+        specificity_val, sensitivity_val, precision_val, F1_score_val, F2_score_val, DSC_val , F_beta_score_val, MAE_val , accuracy_val= specificity_val/test_cnt, sensitivity_val/test_cnt, precision_val/test_cnt, F1_score_val/test_cnt, F2_score_val/test_cnt, DSC_val/test_cnt, F_beta_score_val/test_cnt, MAE_val/test_cnt, accuracy_val/test_cnt
         
-    test_metrics.append((specificity_val, sensitivity_val, precision_val, F1_score_val, F2_score_val, DSC_val, F_beta_score_val, MAE_val, accuracy_val))
+        test_metrics.append((specificity_val, sensitivity_val, precision_val, F1_score_val, F2_score_val, DSC_val, F_beta_score_val, MAE_val, accuracy_val))
     #save the test metrics as a Pandas DataFrame
     df=pd.DataFrame.from_records(test_metrics, columns=[ 'specificity', 'sensitivity', 'precision', 'F1_score', 'F2_score', 'DSC','F_beta', 'MAE', 'acc' ])
     # Save the test metrics
